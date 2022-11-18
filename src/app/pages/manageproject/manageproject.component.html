@@ -1,0 +1,58 @@
+<div>
+    <div class="container-fluid">
+        <h2><strong>Pending</strong></h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <th style="width:130px">Project Name</th>
+                <th style="width:230px">Description</th>
+                <th style="width:150px">Url</th>
+                <th style="width:150px">Group Members</th>
+                <th style="width:110px">Applicant</th>
+                <th style="width:150px">Date Submitted</th>
+                <th style="width:150px"></th>
+                <th style="width:110px"></th>
+                <th style="width:110px"></th>
+            </thead>
+        <tbody>
+            <tr *ngFor = 'let item of Pending'>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td><a href='{{item.url}}' target='_new'>{{item.url}}</a></td>
+                <td>{{item.groupMembers}}</td>
+                <td>{{item.applicant}}</td>
+                <td>{{item.dateSubmitted}}</td>
+                <td></td>
+                <td><button class="btn-primary" (click)='approve(item._id)'>approve</button></td>
+                <td><button class="btn-danger" (click)='reject(item._id)'>reject</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2><strong>Approved</strong></h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <th style="width:130px">Project name</th>
+                <th style="width:230px">Description</th>
+                <th style="width:150px">Url</th>
+                <th style="width:150px">Group Members</th>
+                <th style="width:110px">Applicant</th>
+                <th style="width:150px">Date Submitted</th>
+                <th style="width:150px">Date Updated</th>
+                <th style="width:110px"></th>
+                <th style="width:110px"></th>
+            </thead>
+        <tbody>
+            <tr *ngFor = 'let item of Approved'>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td><a href='{{item.url}}' target='_new'>{{item.url}}</a></td>
+                <td>{{item.groupMembers}}</td>
+                <td>{{item.applicant}}</td>
+                <td>{{item.dateSubmitted}}</td>
+                <td>{{item.dateUpdated}}</td>
+                <td><button mat-button class="btn-primary" (click)='update(item)'>update</button></td>
+                <td><button class="btn-danger" (click)='delete(item._id)'>delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>

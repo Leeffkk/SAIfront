@@ -1,0 +1,48 @@
+<!---->
+<div>
+    <div class="container-fluid">
+        <table class="table table-hover table-sm">
+            <thead>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Url</th>
+            </thead>
+        <tbody>
+            <tr *ngFor = 'let item of Projects'>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td><a href='{{item.url}}' target='_new'>{{item.url}}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+<!--
+<div>
+    <h2>All Project</h2>
+    <div class="container-fluid">
+        <table class="table table-responsive">
+            <thead>
+                <th>Project Name</th>
+            </thead>
+        </table>
+        <tbody>
+            <ng-template ngFor let- [ngForof]="Projects" let-index="index">
+                <tr (click)='showDetail(index,projects)' class="clickable">
+                    <td>{{Projects.name}}</td>
+                </tr>
+                <tr>
+                    <td colspan=3 class="detail">
+                        <div class="container-fluid">
+                            <div class="col-md-4">
+                                <h4>Description: {{Projects.description}}</h4>
+                                <h4><a href='{{Projects.url}}' target='_new'>See Webpage</a> </h4>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </div>
+</div>
+-->

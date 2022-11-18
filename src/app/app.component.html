@@ -1,0 +1,60 @@
+<style>
+  nav{position: relative;}
+  .navbar-nav-right{
+    position:absolute;right:0px;
+  }
+</style>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a class="navbar-brand">Group5 - Project3</a>
+  <!-- Links -->
+  <ul class="navbar-nav" [hidden]='Isadmin'>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='home' routerLinkActive='active'>Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.disabled]='!loggedIn' routerLink='addproject' routerLinkActive='active'>Add Project</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.disabled]='!loggedIn' routerLink='myprojects' routerLinkActive='active'>My Project</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.disabled]='!loggedIn' routerLink='myrequists' routerLinkActive='active'>My Requists</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav" [hidden]='!Isadmin'>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='home' routerLinkActive='active'>Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='addproject' routerLinkActive='active'>Add Project</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='myprojects' routerLinkActive='active'>My Projects</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.disabled]='!loggedIn' routerLink='myrequists' routerLinkActive='active'>My Requests</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink='manageproject' routerLinkActive='active'>Manage Projects</a>
+    </li>
+  </ul>
+  <ul class='navbar-nav navbar-nav-right' [hidden]='loggedIn'>
+    <li class='nav-item'>
+      <a class="nav-link" routerLink='login' routerLinkActive='active'>Sign-In</a>
+    </li>
+    <li class='nav-item'>
+      <a class="nav-link" routerLink='register' routerLinkActive='active'>Sign-Up</a>
+    </li>
+  </ul>
+  <ul class='navbar-nav navbar-nav-right' [hidden]='!loggedIn'>
+    <li class='nav-item'>
+      <span class='nav-link active'>Hello {{authSvc.CurrentUser|async}}</span>
+    </li>
+    <li class='nav-item'>
+      <a class="nav-link" href="#" (click)='signout()' routerLink='home'>Sign Out</a>
+    </li>
+  </ul>
+</nav>
+<div class="container-fluid" role="main">
+<router-outlet></router-outlet>
+</div>

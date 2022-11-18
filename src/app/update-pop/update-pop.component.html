@@ -1,0 +1,45 @@
+<!--<div *ngIf="error" class="alert alert-danger">{{error}}</div>-->
+<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+<div class="center">
+<form id="form1" [formGroup]="updateForm" (ngSubmit)="submit(item)">
+    <div class="form-group">
+        <label for="projectname"><strong>Project Name</strong></label>
+        <input formControlName="projectname" class="form-control" [ngClass]="{ 'is-invalid': submitted && updateForm.controls.projectname.errors }" 
+        #textbox type="text" [(ngModel)]="name"/>
+        <div *ngIf="submitted && updateForm.controls.projectname.errors" class="invalid-feedback">
+            <div *ngIf="updateForm.controls.projectname.errors.required">Project's name is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="projecturl"><strong>Project Url</strong></label>
+        <input formControlName="projecturl" class="form-control" [ngClass]="{ 'is-invalid': submitted && updateForm.controls.projecturl.errors }" 
+        #textbox type="url" [(ngModel)]="url"/>
+        <div *ngIf="submitted && updateForm.controls.projecturl.errors" class="invalid-feedback">
+            <div *ngIf="updateForm.controls.projecturl.errors.required">Project's Url is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="groupmember"><strong>Group Members</strong></label>
+        <input formControlName="groupmember" class="form-control" [ngClass]="{ 'is-invalid': submitted && updateForm.controls.groupmember.errors }" 
+        #textbox type="text" [(ngModel)]="groupMembers"/>
+        <div *ngIf="submitted && updateForm.controls.groupmember.errors" class="invalid-feedback">
+            <div *ngIf="updateForm.controls.groupmember.errors.required">Group member is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description"><strong>Project Description</strong></label>
+        <input formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && updateForm.controls.description.errors }" 
+        #textbox type="text" [(ngModel)]="description"/>
+        <div *ngIf="submitted && updateForm.controls.description.errors" class="invalid-feedback">
+            <div *ngIf="updateForm.controls.description.errors.required">description is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Submit
+        </button>
+        <button style="text-align: center;" mat-button mat-dialog-close class="btn btn-primary"> Cancel</button>
+    </div>
+</form>
+</div>
