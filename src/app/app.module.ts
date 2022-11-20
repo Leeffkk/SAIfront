@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MydialogComponent } from './mydialog/mydialog.component';
 import { UpdatePOPComponent } from './update-pop/update-pop.component';
+import { MotionComponent } from './pages/motion/motion.component';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { UpdatePOPComponent } from './update-pop/update-pop.component';
     ManageprojectComponent,
     MyrequistsComponent,
     MydialogComponent,
-    UpdatePOPComponent
+    UpdatePOPComponent,
+    MotionComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { UpdatePOPComponent } from './update-pop/update-pop.component';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   entryComponents: [
     MydialogComponent,
