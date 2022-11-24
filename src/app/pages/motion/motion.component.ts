@@ -40,20 +40,53 @@ export class MotionComponent implements OnInit {
 
   onSave(){
     if (this.new_fileName!=''){
-      console.log("flag1: ", this.new_fileName);
+      // console.log("flag1: ", this.new_fileName);
 
-      const download$ = this.http.post("http://localhost:3000/api/projects/downloadMotion", 
-        {name:this.new_fileName},{responseType:"blob"});
+      const isReady$ = this.http.post("http://localhost:3000/api/projects/isReadyMotion",
+        {name:this.new_fileName});
+    
+      isReady$.subscribe(result=>{
+
+        if ((result as any).data == true){
+          this.status="ready";
+          const download$ = this.http.post("http://localhost:3000/api/projects/downloadMotion", 
+            {name:this.new_fileName},{responseType:"blob"});
+          
+          download$.subscribe(result=>{
+              // console.log(result);
+              FileSaver(result, this.new_fileName);
+            });
+
+        }
+
+        else{
+          this.status="not ready";
+          console.log("file not ready yet");
+        }
+
+      });
 
       
-      download$.subscribe(result=>{
-          console.log(result);
-          // let downloadURL = window.URL.createObjectURL(data);
-          FileSaver(result, this.new_fileName);
-        });
     }
     
   }
+
+  // onSave(){
+  //   if (this.new_fileName!=''){
+  //     console.log("flag1: ", this.new_fileName);
+
+  //     const download$ = this.http.post("http://localhost:3000/api/projects/downloadMotion", 
+  //       {name:this.new_fileName},{responseType:"blob"});
+
+      
+  //     download$.subscribe(result=>{
+  //         console.log(result);
+  //         // let downloadURL = window.URL.createObjectURL(data);
+  //         FileSaver(result, this.new_fileName);
+  //       });
+  //   }
+    
+  // }
 
 
   ngOnInit(): void {
