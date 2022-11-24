@@ -12,7 +12,8 @@ import { MotionComponent } from './pages/motion/motion.component';
 
 
 const routes: Routes = [
-  {path:'',redirectTo:'home',pathMatch:'full'},
+  // {path:'',redirectTo:'home',pathMatch:'full'},
+  {path:'',redirectTo:'motion',pathMatch:'full'},
   {path:'home',component: HomeComponent},
   {path:'login',component: LoginComponent},
   {path:'register',component: RegisterComponent},

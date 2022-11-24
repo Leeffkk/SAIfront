@@ -5,10 +5,10 @@
   }
 </style>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand">Group5 - Project3</a>
+  <a class="navbar-brand">System for Analysis of Ice</a>
   <!-- Links -->
   <ul class="navbar-nav" [hidden]='Isadmin'>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" routerLink='home' routerLinkActive='active'>Home</a>
     </li>
     <li class="nav-item">
@@ -19,7 +19,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" [class.disabled]='!loggedIn' routerLink='myrequists' routerLinkActive='active'>My Requists</a>
-    </li>
+    </li> -->
     <li class="nav-item">
       <a class="nav-link" routerLink='motion' routerLinkActive='active'>Motion</a>
     </li>
@@ -41,7 +41,7 @@
       <a class="nav-link" routerLink='manageproject' routerLinkActive='active'>Manage Projects</a>
     </li>
   </ul>
-  <ul class='navbar-nav navbar-nav-right' [hidden]='loggedIn'>
+  <!-- <ul class='navbar-nav navbar-nav-right' [hidden]='loggedIn'>
     <li class='nav-item'>
       <a class="nav-link" routerLink='login' routerLinkActive='active'>Sign-In</a>
     </li>
@@ -56,7 +56,7 @@
     <li class='nav-item'>
       <a class="nav-link" href="#" (click)='signout()' routerLink='home'>Sign Out</a>
     </li>
-  </ul>
+  </ul> -->
 </nav>
 <div class="container-fluid" role="main">
 <router-outlet></router-outlet>
