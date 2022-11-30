@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import FileSaver from 'file-saver';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-motion',
@@ -15,6 +16,8 @@ export class MotionComponent implements OnInit {
 
   new_fileName = '';
 
+  model_param = 'RadarSAT';
+
   constructor(private http: HttpClient) { }
 
   onFileSelected(event) {
@@ -28,6 +31,7 @@ export class MotionComponent implements OnInit {
         const formData = new FormData();
 
         formData.append("file", file);
+        formData.append("model_param", this.model_param);
 
         const upload$ = this.http.post("http://localhost:3000/api/projects/uploadMotion", formData);
         

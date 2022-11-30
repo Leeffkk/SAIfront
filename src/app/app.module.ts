@@ -19,7 +19,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MydialogComponent } from './mydialog/mydialog.component';
 import { UpdatePOPComponent } from './update-pop/update-pop.component';
 import { MotionComponent } from './pages/motion/motion.component';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { MatIconModule } from '@angular/material/icon'
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatStepperModule
   ],
   entryComponents: [
     MydialogComponent,
