@@ -23,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { LeadComponent } from './pages/lead/lead.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     MyrequistsComponent,
     MydialogComponent,
     UpdatePOPComponent,
-    MotionComponent
+    MotionComponent,
+    LeadComponent
   ],
   imports: [
     BrowserModule,

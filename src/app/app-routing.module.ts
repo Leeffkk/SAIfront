@@ -9,11 +9,12 @@ import { UpdateProjectComponent } from './pages/updateproject/updateproject.comp
 import { ManageprojectComponent } from './pages/manageproject/manageproject.component';
 import { MyrequistsComponent } from './pages/myrequists/myrequists.component';
 import { MotionComponent } from './pages/motion/motion.component';
+import { LeadComponent } from './pages/lead/lead.component';
 
 
 const routes: Routes = [
   // {path:'',redirectTo:'home',pathMatch:'full'},
-  {path:'',redirectTo:'motion',pathMatch:'full'},
+  {path:'',redirectTo:'lead',pathMatch:'full'},
   {path:'home',component: HomeComponent},
   {path:'login',component: LoginComponent},
   {path:'register',component: RegisterComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path:'updateproject',component: UpdateProjectComponent},
   {path:'manageproject',component: ManageprojectComponent},
   {path:'myrequists',component: MyrequistsComponent},
-  {path:'motion',component: MotionComponent}
+  {path:'motion',component: MotionComponent},
+  {path:'lead',component: LeadComponent}
 ];
 
 @NgModule({

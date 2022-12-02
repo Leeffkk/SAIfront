@@ -2,48 +2,6 @@
 <input type="file" class="file-input"
 (change)="onFileSelected($event)" #fileUpload hidden>
 
-<!-- <div>
-
-    <div>
-        <mat-form-field>
-            <mat-label>Choose model parameter</mat-label>
-            <mat-select [(value)]="model_param">
-                <mat-option value="U-Net">U-Net</mat-option>
-                <mat-option value="WorldView">WorldView</mat-option>
-                <mat-option value="RadarSAT">RadarSAT</mat-option>
-                <mat-option value="GPRI">GPRI</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-
-    <div class="file-upload">
-        {{fileName || "No file uploaded yet."}}
-        <button mat-mini-fab color="primary" class="upload-btn"
-            (click)="fileUpload.click()">
-            <mat-icon>attach_file</mat-icon>
-        </button>
-    </div>
-    <div>
-        <div>
-            Filename: {{fileName}}
-        </div>
-        <div>
-            model_param: {{model_param}}
-        </div>
-        <div>
-            Status: {{status}}
-        </div>
-        <div>
-            New_fileName: {{new_fileName}}
-        </div>
-    </div>
-</div>
-
-<div>
-    <button (click)="onSave()">Download Prediction</button>
-</div> -->
-
-
 <mat-vertical-stepper linear #stepper>
     <mat-step>
 
