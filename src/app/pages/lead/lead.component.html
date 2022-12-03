@@ -41,7 +41,55 @@
         <button (click)="onSave()">Download Prediction</button>
         <div>
             <!-- <button mat-button matStepperPrevious>Back</button> -->
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="stepper.reset();reloadPage();">Reset</button>
         </div>
     </mat-step>
 </mat-vertical-stepper>
+
+
+
+
+<mat-grid-list cols="2" rowHeight="1:1">
+
+    <mat-grid-tile>
+        <mat-card class="img-card">
+            <mat-card-header>
+                <mat-card-title>uploaded image:</mat-card-title>
+            </mat-card-header>
+            <div class="div1">
+                <img src={{uploaded_image_url}}>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+
+
+    <mat-grid-tile>
+        <mat-card class="img-card">
+            <mat-card-header>
+                <mat-card-title>downloaded image:</mat-card-title>
+            </mat-card-header>
+            <div class="div1">
+                <img src={{downloaded_image_url}}>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+
+
+
+
+<!-- <mat-list>
+    <mat-list-item>
+        uploaded image:
+    </mat-list-item>
+
+    <mat-divider [vertical]="true"></mat-divider>
+
+    <mat-list-item>
+        <img src={{uploaded_image_url}}>
+    </mat-list-item>
+
+
+</mat-list> -->

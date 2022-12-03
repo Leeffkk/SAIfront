@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import FileSaver from 'file-saver';
 import { FormControl, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-lead',
@@ -18,7 +20,13 @@ export class LeadComponent implements OnInit {
 
   model_param = 'RadarSAT';
 
-  constructor(private http: HttpClient) { }
+  uploaded_image_url: string | ArrayBuffer;
+  image_source;
+  new_url;
+
+  downloaded_image_url;
+
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   onFileSelected(event) {
 
@@ -39,6 +47,29 @@ export class LeadComponent implements OnInit {
           this.new_fileName = (result as any).data;
           this.status = "uploaded";
         });
+
+        let reader = new FileReader();
+        
+        reader.onloadend = () => {
+          this.uploaded_image_url = reader.result;
+          // console.log(typeof this.uploaded_image_url);
+
+          // this.new_url = this.uploaded_image_url.toString().replace('tiff', 'png');
+          // console.log(
+          //   this.new_url
+          // );
+
+          // this.image_source = this.sanitizer.bypassSecurityTrustUrl(
+          //   this.new_url.toString()
+          // );
+        };
+        reader.readAsDataURL(file);
+
+        
+        // this.image_source = this.sanitizer.bypassSecurityTrustUrl(
+        //   this.image_url[0]
+        // );
+
     }
   }
 
@@ -59,6 +90,14 @@ export class LeadComponent implements OnInit {
           download$.subscribe(result=>{
               // console.log(result);
               FileSaver(result, this.new_fileName);
+
+              let reader = new FileReader();
+        
+              reader.onloadend = () => {
+                this.downloaded_image_url = reader.result;
+              };
+              reader.readAsDataURL(result);
+
             });
 
         }
@@ -73,6 +112,22 @@ export class LeadComponent implements OnInit {
       
     }
     
+  }
+
+  reloadPage(){
+    this.fileName = '';
+
+    this.status = '';
+  
+    this.new_fileName = '';
+  
+    // model_param = 'RadarSAT';
+  
+    this.uploaded_image_url = null;
+    this.image_source = null;
+    this.new_url = null;
+  
+    this.downloaded_image_url = null;
   }
 
   ngOnInit(): void {

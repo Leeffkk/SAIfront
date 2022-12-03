@@ -24,6 +24,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { LeadComponent } from './pages/lead/lead.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -51,7 +55,11 @@ import { LeadComponent } from './pages/lead/lead.component';
     MatIconModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDividerModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule
   ],
   entryComponents: [
     MydialogComponent,
