@@ -7,7 +7,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ExampleUI';
+  title = 'SAI';
   get loggedIn():boolean{
     return this.authSvc.loggedIn;
   }
