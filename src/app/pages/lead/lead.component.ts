@@ -41,7 +41,8 @@ export class LeadComponent implements OnInit {
         formData.append("file", file);
         formData.append("model_param", this.model_param);
 
-        const upload$ = this.http.post("http://localhost:3000/api/projects/uploadLead", formData);
+        // const upload$ = this.http.post("http://localhost:3000/api/projects/uploadLead", formData);
+        const upload$ = this.http.post("http://vims.cis.udel.edu:4396/api/projects/uploadLead", formData);
         
         upload$.subscribe(result=>{
           this.new_fileName = (result as any).data;
@@ -77,14 +78,16 @@ export class LeadComponent implements OnInit {
     if (this.new_fileName!=''){
       // console.log("flag1: ", this.new_fileName);
 
-      const isReady$ = this.http.post("http://localhost:3000/api/projects/isReadyLead",
+      // const isReady$ = this.http.post("http://localhost:3000/api/projects/isReadyLead",
+      const isReady$ = this.http.post("http://vims.cis.udel.edu:4396/api/projects/isReadyLead",
         {name:this.new_fileName});
     
       isReady$.subscribe(result=>{
 
         if ((result as any).data == true){
           this.status="ready";
-          const download$ = this.http.post("http://localhost:3000/api/projects/downloadLead", 
+          // const download$ = this.http.post("http://localhost:3000/api/projects/downloadLead", 
+          const download$ = this.http.post("http://vims.cis.udel.edu:4396/api/projects/downloadLead", 
             {name:this.new_fileName},{responseType:"blob"});
           
           download$.subscribe(result=>{
