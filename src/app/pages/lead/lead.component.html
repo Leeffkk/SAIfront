@@ -20,6 +20,22 @@
 
     </mat-step>
     <mat-step>
+
+        <ng-template matStepLabel>Remove Image From Server</ng-template>
+        <mat-form-field>
+            <mat-label>Remove your image after upload?</mat-label>
+            <mat-select [(value)]="toRemove">
+                <mat-option value="true">true</mat-option>
+                <mat-option value="false">false</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+
+    </mat-step>
+    <mat-step>
         <ng-template matStepLabel>Upload Image</ng-template>
         <div class="file-upload">
             {{fileName || "No image uploaded yet."}}
@@ -41,8 +57,26 @@
         <button (click)="onSave()">Download Prediction</button>
         <div>
             <!-- <button mat-button matStepperPrevious>Back</button> -->
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+
+        <ng-template matStepLabel>Leave Comments</ng-template>
+        <mat-form-field>
+            <mat-label>Leave a comment on the result</mat-label>
+            <textarea matInput [(value)]="comments"></textarea>
+            
+        </mat-form-field>
+        <div>
+            Upload result: {{upload_result}}
+        </div>
+        <div>
+            <button mat-button (click)="onUploadComments();">Upload Comments</button>
+            <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset();reloadPage();">Reset</button>
         </div>
+
     </mat-step>
 </mat-vertical-stepper>
 
