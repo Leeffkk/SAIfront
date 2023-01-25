@@ -29,6 +29,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { MatInputModule } from '@angular/material/input';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   entryComponents: [
     MydialogComponent,

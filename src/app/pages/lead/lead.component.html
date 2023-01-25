@@ -63,11 +63,11 @@
     <mat-step>
 
         <ng-template matStepLabel>Leave Comments</ng-template>
-        <mat-form-field>
-            <mat-label>Leave a comment on the result</mat-label>
-            <textarea matInput [(value)]="comments"></textarea>
-            
-        </mat-form-field>
+        <div>
+            <mat-label>Leave a comment about the result</mat-label>
+            <textarea matInput type="text" [(ngModel)]="comments"></textarea>
+        </div>
+
         <div>
             Upload result: {{upload_result}}
         </div>

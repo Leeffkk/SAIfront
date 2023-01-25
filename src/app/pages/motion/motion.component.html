@@ -1,72 +1,46 @@
 
 <input type="file" class="file-input"
-(change)="onFileSelected($event)" #fileUpload hidden>
-
-<!-- <div>
-
-    <div>
-        <mat-form-field>
-            <mat-label>Choose model parameter</mat-label>
-            <mat-select [(value)]="model_param">
-                <mat-option value="U-Net">U-Net</mat-option>
-                <mat-option value="WorldView">WorldView</mat-option>
-                <mat-option value="RadarSAT">RadarSAT</mat-option>
-                <mat-option value="GPRI">GPRI</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-
-    <div class="file-upload">
-        {{fileName || "No file uploaded yet."}}
-        <button mat-mini-fab color="primary" class="upload-btn"
-            (click)="fileUpload.click()">
-            <mat-icon>attach_file</mat-icon>
-        </button>
-    </div>
-    <div>
-        <div>
-            Filename: {{fileName}}
-        </div>
-        <div>
-            model_param: {{model_param}}
-        </div>
-        <div>
-            Status: {{status}}
-        </div>
-        <div>
-            New_fileName: {{new_fileName}}
-        </div>
-    </div>
-</div>
-
-<div>
-    <button (click)="onSave()">Download Prediction</button>
-</div> -->
-
+(change)="onFileSelected1($event)" #fileUpload1 hidden>
+<input type="file" class="file-input"
+(change)="onFileSelected2($event)" #fileUpload2 hidden>
 
 <mat-vertical-stepper linear #stepper>
     <mat-step>
 
-        <ng-template matStepLabel>Select Image Modality</ng-template>
+        <ng-template matStepLabel>Remove Image From Server</ng-template>
         <mat-form-field>
-            <mat-label>Choose Image Modality</mat-label>
-            <mat-select [(value)]="model_param">
-                <mat-option value="WorldView">WorldView</mat-option>
-                <mat-option value="RadarSAT">RadarSAT</mat-option>
-                <mat-option value="GPRI">GPRI</mat-option>
+            <mat-label>Remove your image after upload?</mat-label>
+            <mat-select [(value)]="toRemove">
+                <mat-option value="true">true</mat-option>
+                <mat-option value="false">false</mat-option>
             </mat-select>
         </mat-form-field>
         <div>
+            <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
         </div>
 
     </mat-step>
     <mat-step>
-        <ng-template matStepLabel>Upload Image</ng-template>
+        <ng-template matStepLabel>Upload Image1</ng-template>
         <div class="file-upload">
-            {{fileName || "No image uploaded yet."}}
+            {{fileName1 || "No image uploaded yet."}}
             <button mat-mini-fab color="primary" class="upload-btn"
-                (click)="fileUpload.click()">
+                (click)="fileUpload1.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Upload Image2</ng-template>
+        <div class="file-upload">
+            {{fileName2 || "No image uploaded yet."}}
+            <button mat-mini-fab color="primary" class="upload-btn"
+                (click)="fileUpload2.click()">
                 <mat-icon>attach_file</mat-icon>
             </button>
         </div>
@@ -87,3 +61,44 @@
         </div>
     </mat-step>
 </mat-vertical-stepper>
+
+
+
+
+
+<mat-grid-list cols="3" rowHeight="1:1">
+
+    <mat-grid-tile>
+        <mat-card class="img-card">
+            <mat-card-header>
+                <mat-card-title>uploaded image1:</mat-card-title>
+            </mat-card-header>
+            <div class="div1">
+                <img src={{uploaded_image_url1}}>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-card class="img-card">
+            <mat-card-header>
+                <mat-card-title>uploaded image2:</mat-card-title>
+            </mat-card-header>
+            <div class="div1">
+                <img src={{uploaded_image_url2}}>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-card class="img-card">
+            <mat-card-header>
+                <mat-card-title>downloaded image:</mat-card-title>
+            </mat-card-header>
+            <div class="div1">
+                <img src={{downloaded_image_url}}>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+
+</mat-grid-list>
