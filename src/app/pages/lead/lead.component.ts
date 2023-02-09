@@ -4,6 +4,12 @@ import FileSaver from 'file-saver';
 import { FormControl, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { Annotorious } from '@recogito/annotorious';
+import '@recogito/annotorious/dist/annotorious.min.css';
+
+const anno = new Annotorious({
+  image: document.getElementById('image-to-annotate')
+});
 
 @Component({
   selector: 'app-lead',
