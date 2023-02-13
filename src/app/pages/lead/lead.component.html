@@ -56,7 +56,7 @@
         </div>
         <button (click)="onSave()">Download Prediction</button>
         <div>
-            <!-- <button mat-button matStepperPrevious>Back</button> -->
+            <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
         </div>
     </mat-step>
@@ -74,9 +74,26 @@
         <div>
             <button mat-button (click)="onUploadComments();">Upload Comments</button>
             <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="onLoadImage();" matStepperNext>Next</button>
             <button mat-button (click)="stepper.reset();reloadPage();">Reset</button>
         </div>
 
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Image Annotation</ng-template>
+        <div>
+            <div id="anno-div">
+                <!-- <img id="image-to-annotate" src={{uploaded_image_url}} annotorious-annotate> -->
+                <!-- <img id="image-to-annotate" src="https://hold-baby.github.io/label-img/dog.jpg"> -->
+            </div>
+            <button mat-button (click)="onLoadImage();">Load Image</button>
+            <button mat-button (click)="onNewPolygon();">New Polygon</button>
+            <button mat-button (click)="onSaveAnnotation();">Upload Annotation</button>
+        </div>
+        <!-- <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset();reloadPage();">Reset</button>
+        </div> -->
     </mat-step>
 </mat-vertical-stepper>
 
@@ -110,9 +127,7 @@
 
 </mat-grid-list>
 
-<div>
-    <img id="image-to-annotate" src={{uploaded_image_url}}>
-</div>
+
 
 
 

@@ -3,13 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import FileSaver from 'file-saver';
 import { FormControl, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import LabelImg from 'label-img';
+import { of } from 'rxjs';
 
-import { Annotorious } from '@recogito/annotorious';
-import '@recogito/annotorious/dist/annotorious.min.css';
-
-const anno = new Annotorious({
-  image: document.getElementById('image-to-annotate')
-});
+let labeler;
 
 @Component({
   selector: 'app-lead',
@@ -17,6 +14,13 @@ const anno = new Annotorious({
   styleUrls: ['./lead.component.scss']
 })
 export class LeadComponent implements OnInit {
+
+  // labeler = new LabelImg(<HTMLDivElement>document.getElementById("anno-div"), {
+  //   width: 800,
+  //   height: 600,
+  //   bgColor: `#000`, // 背景色
+  //   imagePlacement: <any>"default", // default | center
+  // });
 
   fileName = '';
 
@@ -58,26 +62,35 @@ export class LeadComponent implements OnInit {
         const upload$ = this.http.post("https://vims.cis.udel.edu/sai/api/projects/uploadLead", formData);
         
         upload$.subscribe(result=>{
-          this.new_fileName = (result as any).data;
-          this.status = "uploaded";
+          if ((result as any).status == 'success'){
+            this.new_fileName = (result as any).data;
+            this.status = "uploaded";
+  
+            let reader = new FileReader();
+          
+            reader.onloadend = () => {
+              this.uploaded_image_url = reader.result;
+              // console.log(typeof this.uploaded_image_url);
+    
+              // this.new_url = this.uploaded_image_url.toString().replace('tiff', 'png');
+              // console.log(
+              //   this.new_url
+              // );
+    
+              // this.image_source = this.sanitizer.bypassSecurityTrustUrl(
+              //   this.new_url.toString()
+              // );
+              // console.log("upload image url: ", this.uploaded_image_url);
+              
+            };
+            reader.readAsDataURL(file);
+          } else{
+            console.error("upload motion error: ", (result as any).data);
+          }
+
         });
 
-        let reader = new FileReader();
-        
-        reader.onloadend = () => {
-          this.uploaded_image_url = reader.result;
-          // console.log(typeof this.uploaded_image_url);
 
-          // this.new_url = this.uploaded_image_url.toString().replace('tiff', 'png');
-          // console.log(
-          //   this.new_url
-          // );
-
-          // this.image_source = this.sanitizer.bypassSecurityTrustUrl(
-          //   this.new_url.toString()
-          // );
-        };
-        reader.readAsDataURL(file);
 
         
         // this.image_source = this.sanitizer.bypassSecurityTrustUrl(
@@ -111,8 +124,10 @@ export class LeadComponent implements OnInit {
         
               reader.onloadend = () => {
                 this.downloaded_image_url = reader.result;
+                // console.log("downloaded_image_url", this.downloaded_image_url);
               };
               reader.readAsDataURL(result);
+              
 
             });
 
@@ -173,6 +188,58 @@ export class LeadComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+  
+  ngAfterViewInit(): void {
+    console.log("here!!!!!!!!");
+
+    labeler = new LabelImg(<HTMLDivElement>document.getElementById("anno-div"), {
+      width: 800,
+      height: 600,
+      bgColor: `#000`, // 背景色
+      imagePlacement: <any>"center", // default | center
+    });
+
+    labeler.register("myPolygon", {
+      type: "Polygon",
+      tag: "myTag",
+      name: 'myName'
+    });
+    // labeler.load('https://hold-baby.github.io/label-img/dog.jpg');
+    // labeler.Image.loadFromImg(document.querySelector("#image-to-annotate"));
+
+  }
+
+  onNewPolygon(){
+    labeler.label("myPolygon");
+  }
+
+  onLoadImage(){
+    labeler.load(this.uploaded_image_url);
+  }
+
+  onSaveAnnotation(){
+    
+    let position_list = labeler.getShapeList();
+    let positions = new Array(position_list.length);
+
+    for (var i=0; i<position_list.length; i++){
+      // console.log(position_list[i].getPositions());
+      positions[i] = position_list[i].getPositions();
+    }
+
+    console.log(positions);
+
+    const uploadAnnotation$ = this.http.post("https://vims.cis.udel.edu/sai/api/projects/uploadLeadAnnotation",{
+      name:this.new_fileName.split('.')[0]+'.txt',
+      positions:positions
+    });
+
+    uploadAnnotation$.subscribe(result=>{
+      console.log("annotation uploaded");
+    });
+
   }
 
 }
